@@ -1,46 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Why I Love You</title>
+<title>My Moon ❤️</title>
 
 <style>
 body{
+margin:0;
+font-family:'Segoe UI';
 text-align:center;
-font-family:Arial;
-background:#ffe6f0;
+background:linear-gradient(to right,#ff9a9e,#fad0c4);
+color:#fff;
 overflow:hidden;
 }
 
 h1{
-color:#ff3366;
-margin-top:50px;
+margin-top:40px;
+font-size:40px;
 }
 
 button{
 padding:15px 25px;
-background:#ff3366;
-color:white;
 border:none;
 border-radius:30px;
+background:#ff4d6d;
+color:white;
 font-size:18px;
 cursor:pointer;
 }
 
+.container{
+margin-top:30px;
+}
+
 .card{
-margin:20px;
-padding:20px;
-border:2px dashed pink;
 display:inline-block;
+margin:15px;
+padding:20px;
 width:220px;
 background:white;
-border-radius:15px;
+color:#333;
+border-radius:20px;
+cursor:pointer;
+transition:0.3s;
 }
 
-#message{
-font-size:18px;
-margin:20px;
+.card:hover{
+transform:scale(1.1);
 }
 
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+display:none;
+justify-content:center;
+align-items:center;
+}
+
+.popup-content{
+background:white;
+color:black;
+padding:30px;
+border-radius:20px;
+width:300px;
+}
+
+.close{
+margin-top:10px;
+background:red;
+}
+
+/* hearts */
 .heart{
 position:fixed;
 bottom:-10px;
@@ -52,6 +85,7 @@ animation:float 5s linear infinite;
 0%{transform:translateY(0);opacity:1;}
 100%{transform:translateY(-800px);opacity:0;}
 }
+
 </style>
 </head>
 
@@ -59,31 +93,68 @@ animation:float 5s linear infinite;
 
 <h1>Why I Love You ❤️</h1>
 
-<p id="message">Click the button to feel loved</p>
+<p id="msg">Click below 😊</p>
 
-<button onclick="showLove()">Click to Feel Loved</button>
+<button onclick="changeText()">Click to Feel Loved</button>
 
-<br><br>
+<div class="container">
 
-<div class="card">
-<h3>Open When You Miss Me</h3>
-<p>I’m always thinking about you ❤️</p>
+<div class="card" onclick="openPopup('miss')">
+Open When You Miss Me
 </div>
 
-<div class="card">
-<h3>Open When You're Sad</h3>
-<p>Everything will be okay. I'm here for you.</p>
+<div class="card" onclick="openPopup('sad')">
+Open When You're Sad
 </div>
+
+<div class="card" onclick="openPopup('happy')">
+Open When You're Happy
+</div>
+
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+<div class="popup-content" id="popup-text"></div>
+<button class="close" onclick="closePopup()">Close</button>
+</div>
+
+<!-- MUSIC -->
+<audio autoplay loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+</audio>
 
 <script>
 
-function showLove(){
-document.getElementById("message").innerHTML =
-"I love you because your presence is enough ❤️";
+function changeText(){
+document.getElementById("msg").innerHTML =
+"You are my favorite person ❤️";
 }
 
+function openPopup(type){
+let text="";
+
+if(type=="miss"){
+text="I miss you every second ❤️";
+}
+else if(type=="sad"){
+text="Hey... everything will be okay, I'm always with you 💕";
+}
+else if(type=="happy"){
+text="Seeing you happy is my happiness 😊❤️";
+}
+
+document.getElementById("popup-text").innerHTML=text;
+document.getElementById("popup").style.display="flex";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+// hearts
 function createHeart(){
-const heart = document.createElement("div");
+const heart=document.createElement("div");
 heart.classList.add("heart");
 heart.innerHTML="❤️";
 

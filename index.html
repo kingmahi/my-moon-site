@@ -99,7 +99,7 @@ animation:float 5s linear infinite;
 <body>
 
 <h1>Why I Love You ❤️</h1>
-  <h2 id="I LOVE TEXT"></h2>
+  <h2 id="loveText"></h2>
   
 
 <p id="msg">Click below 😊</p>
@@ -178,11 +178,12 @@ setTimeout(()=>{heart.remove();},5000);
 setInterval(createHeart,300);
 
 </script>
-  const text = "MAHESH 💞MONCHERY";//change names here let i = 0;
+  const text = "MAHESH 💞MONCHERY";
+  let i = 0;
 
   function typeEffect(){
   if(i < text.length){
-         document.getElementById("LOVETEXT").innerHTML +=text.charAt(i);
+         document.getElementById("loveText").innerHTML += text.charAt(i);
     i++;
     setTimeout(typeEffect,100):
     }

@@ -26,13 +26,37 @@ text-shadow:0 0 10px #ff4d6d, 0 0 20px #ff4d6d;
 min-height:40px;
 }
 
-/* heartbeat */
+/* ❤️ heartbeat */
 @keyframes heartbeat{
 0%{transform:scale(1);}
 25%{transform:scale(1.2);}
 50%{transform:scale(1);}
 75%{transform:scale(1.2);}
 100%{transform:scale(1);}
+}
+
+/* 📸 slideshow */
+.slideshow{
+position:relative;
+width:250px;
+height:300px;
+margin:20px auto;
+overflow:hidden;
+border-radius:20px;
+box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0;
+transition:opacity 1s ease-in-out;
+}
+
+.slide.active{
+opacity:1;
 }
 
 button{
@@ -114,6 +138,13 @@ animation:float 5s linear infinite;
 <h1>Why I Love You ❤️</h1>
 <h2 id="loveText"></h2>
 
+<!-- 📸 SLIDESHOW -->
+<div class="slideshow">
+  <img src="photo1.jpg" class="slide active">
+  <img src="photo2.jpg" class="slide">
+  <img src="photo3.jpg" class="slide">
+</div>
+
 <p id="msg">Click below 😊</p>
 
 <button onclick="changeText()">Click to Feel Loved</button>
@@ -186,8 +217,18 @@ setTimeout(typeEffect,80);
 document.getElementById("loveText").style.animation = "heartbeat 1s infinite";
 }
 }
-
 typeEffect();
+
+// slideshow
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+function showSlide(){
+slides.forEach(slide => slide.classList.remove("active"));
+index = (index + 1) % slides.length;
+slides[index].classList.add("active");
+}
+setInterval(showSlide,2000);
 
 // hearts
 function createHeart(){
@@ -202,7 +243,6 @@ document.body.appendChild(heart);
 
 setTimeout(()=>{heart.remove();},5000);
 }
-
 setInterval(createHeart,300);
 
 </script>

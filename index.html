@@ -18,23 +18,21 @@ margin-top:40px;
 font-size:40px;
 }
 
-/* ❤️ Name text */
 #loveText{
 font-size:28px;
 margin-top:10px;
 color:#fff;
 text-shadow:0 0 10px #ff4d6d, 0 0 20px #ff4d6d;
 min-height:40px;
-animation: heartbeat 1.2s infinite;
 }
 
-/* ❤️ heartbeat animation */
+/* heartbeat */
 @keyframes heartbeat{
 0%{transform:scale(1);}
-14%{transform:scale(1.2);}
-28%{transform:scale(1);}
-42%{transform:scale(1.2);}
-70%{transform:scale(1);}
+25%{transform:scale(1.2);}
+50%{transform:scale(1);}
+75%{transform:scale(1.2);}
+100%{transform:scale(1);}
 }
 
 button{
@@ -96,7 +94,7 @@ border:none;
 border-radius:10px;
 }
 
-/* ❤️ floating hearts */
+/* floating hearts */
 .heart{
 position:fixed;
 bottom:-10px;
@@ -136,26 +134,24 @@ Open When You're Happy
 
 </div>
 
-<!-- POPUP -->
 <div class="popup" id="popup">
 <div class="popup-content" id="popup-text"></div>
 <button class="close" onclick="closePopup()">Close</button>
 </div>
 
-<!-- MUSIC -->
 <audio autoplay loop>
 <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
 </audio>
 
 <script>
 
-// button message
+// button
 function changeText(){
 document.getElementById("msg").innerHTML =
 "You are my favorite person ❤️";
 }
 
-// popup messages
+// popup
 function openPopup(type){
 let text="";
 
@@ -163,10 +159,10 @@ if(type=="miss"){
 text="I miss you every second ❤️";
 }
 else if(type=="sad"){
-text="Hey... everything will be okay, I'm always with you 💕";
+text="Everything will be okay 💕";
 }
 else if(type=="happy"){
-text="Seeing you happy is my happiness 😊❤️";
+text="Your smile = my happiness 😊❤️";
 }
 
 document.getElementById("popup-text").innerHTML=text;
@@ -177,21 +173,23 @@ function closePopup(){
 document.getElementById("popup").style.display="none";
 }
 
-// ❤️ typing animation
-const text = "MAHESH 💞 MONCHERY"; // change names here
+// typing + heartbeat
+const text = "MAHESH 💞 MONCHERY";
 let i = 0;
 
 function typeEffect(){
 if(i < text.length){
 document.getElementById("loveText").innerHTML += text.charAt(i);
 i++;
-setTimeout(typeEffect,100);
+setTimeout(typeEffect,80);
+}else{
+document.getElementById("loveText").style.animation = "heartbeat 1s infinite";
 }
 }
 
 typeEffect();
 
-// ❤️ floating hearts
+// hearts
 function createHeart(){
 const heart=document.createElement("div");
 heart.classList.add("heart");
